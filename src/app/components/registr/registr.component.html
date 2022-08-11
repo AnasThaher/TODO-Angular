@@ -1,1 +1,46 @@
-<p>registr works!</p>
+<div class="page" [hidden]="!showreg">
+  <div class="login bg-light">
+    <h1 class="text-center mt-4">Register</h1>
+    <form #register="ngForm" (ngSubmit)="creatUser(register)">
+      <div class="mb-3 form-group">
+        <input #name="ngModel" type="text" class="form-control" aria-describedby="emailHelp" placeholder="    Your Name"
+          name="name" required ngModel>
+        <div *ngIf="name.touched && name.invalid" class="alert alert-danger ">
+          Name is required
+        </div>
+      </div>
+      <div class="mb-3 form-group">
+        <input #email="ngModel" type="email" class="form-control" aria-describedby="emailHelp"
+          placeholder="   Email address" name="email" required ngModel>
+        <div *ngIf="email.touched && email.invalid" class="alert alert-danger ">
+          email is not valid
+        </div>
+      </div>
+
+      <div class="mb-3 form-group">
+        <input #password="ngModel" type="password" class="form-control" placeholder="   Password" name="password"
+          min="8" required ngModel>
+        <div *ngIf="password.touched && password.invalid" class="alert alert-danger ">
+          password is not valid min is 8
+        </div>
+      </div>
+
+      <div class="mb-3 form-group">
+        <input type="number" class="form-control" placeholder="   Your Age" name="age" required ngModel>
+      </div>
+      <div class="form-group">
+        <select class="form-select" class="form-control" name="gender" required ngModel>
+          <option selected disabled>Select Your Gender</option>
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+        </select>
+      </div>
+
+
+      <button type="submit" class="btn btn-primary pt" [disabled]="!register.valid">Register</button>
+      <a type="submit" class="btn btn-primary  " (click)="goTOLOgin()">Login</a>
+
+    </form>
+
+
+  </div>

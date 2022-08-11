@@ -1,0 +1,41 @@
+
+
+
+<div class="pageDialog">
+  <div class="contentDialog text-center">
+    <h1 mat-dialog-title >{{data?.title}}</h1>
+
+    <div class="dialog">
+      <!-- <form>
+        <div>
+        <input type="text" name="inputTodo" placeholder="Enter Todo..." class="todo-input" [(ngModel)]="todoContent">
+      </div >
+        <div class="d2">
+        <button  mat-button [mat-dialog-close]="todoContent" class="todo-submit">Edit</button>
+        <button  mat-button mat-dialog-close class="todo-close" >Close</button>
+
+      </div>
+      </form> -->
+
+      <form #log="ngForm">
+        <div class="mb-3 form-group">
+          <input value="test" #email="ngModel" type="text" class="form-control" aria-describedby="emailHelp"
+            placeholder="   Enter ToDo" required name="content" ngModel>
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class=" text-start d-inline-block w-100">Select Status</label>
+          <select class="form-select  w-100" class="form-control" name="status" required ngModel>
+            <option selected value="ToDo">ToDo</option>
+            <option value="Progress">Progress</option>
+            <option value="Done">Done</option>
+          </select>
+          
+        </div>
+      
+        <button  mat-button [mat-dialog-close]="log" class="todo-submit">Edit</button>
+      </form>
+      <button  mat-button mat-dialog-close class="todo-close" >Close</button>
+
+  </div>
+</div>
+

@@ -1,1 +1,33 @@
-<p>todo works!</p>
+<div class="pa p-5" [hidden]="!showtodo">
+<div class="todos container" >
+     <h1 class="text-center">TODO APP ⚜</h1>
+  <form (submit)="addTodo()">
+    <input type="text" name="inputTodo" placeholder="Enter Todo..." class="todo-input" [(ngModel)]="todoContent">
+    <input type="submit" value="Add ToDo" class="todo-submit">
+
+  </form>
+  <input type="submit" value="Log Out" class="todo-submit" (click)="logOut()">
+
+   <div class=" ms-1" >     Your Id is {{userid}} 👽</div>
+
+  <div class="todoo ">
+    <div class="todo hedew bg-dark">
+      <div class="id">Id </div>
+      <div class="content">   content </div>
+      <div class="content"> status </div>
+
+      <div style=" visibility: hidden" class="delet ms-3 btn btn-primary mat">tttttttttttttttttttttttttt</div>
+    </div>
+    <div *ngFor="let t of tod; let i =index; " class="todo">
+      <div class="id">{{i+1}} - </div>
+      <div class="content"> {{t.content}} </div>
+      <div class="content"> {{t.status}} </div>
+
+      <button class="delet btn btn-danger" (click)="remove(t)">remove</button>
+      <button class="delet ms-3 btn btn-primary mat" (click)="edit(t)">Edit</button>
+    </div>
+  </div>
+</div>
+</div>
+
+

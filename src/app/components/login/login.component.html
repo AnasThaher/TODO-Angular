@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="page" [hidden]="!showlog">
+  <div class="login bg-light">
+    <h1 class="text-center mt-4">Login</h1>
+
+    <form #log="ngForm" (ngSubmit)="login(log)">
+      <div class="mb-3 form-group">
+        <input #email="ngModel" type="email" class="form-control" aria-describedby="emailHelp"
+          placeholder="   Email address" required name="email" ngModel>
+        <div *ngIf="email.touched && email.invalid" class="alert alert-danger ">
+          email is required
+        </div>
+      </div>
+      <div class="mb-3 form-group">
+        <input #password="ngModel" type="password" class="form-control" placeholder="   Password" minlength="8"
+          name="password" required ngModel>
+        <div *ngIf="password.touched && password.invalid" class="alert alert-danger ">
+          password is not valid min is 8
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!log.valid">Submit</button>
+
+    </form>
+
+  </div>
+
+</div>
