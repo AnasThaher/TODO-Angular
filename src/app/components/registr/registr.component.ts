@@ -34,7 +34,6 @@ export class RegistrComponent implements OnInit {
     const age = register.value.age;
     const newUser = new User(userName, email, gender, age, password, User.id);
     User.id++;
-    // console.log(newUser);
     users.push(newUser);
     // console.log(this.users);
     this.showreg = false;

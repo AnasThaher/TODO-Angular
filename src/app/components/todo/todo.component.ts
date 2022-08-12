@@ -21,20 +21,20 @@ export class TodoComponent implements OnInit {
   @Output() showtodoChange = new EventEmitter<boolean>();
   @Input() tod: Todo[] = [];
   @Output() todchange = new EventEmitter();
- 
+
   constructor(private dialog: MatDialog) {
     console.log(this.userid);
 
 
   }
 
-  
+
 
   ngOnInit(): void {
 
 
   }
-  
+
 
   edit(toRm: any) {
     const dialoRef = this.dialog.open(DialogBoxComponent, {
@@ -45,23 +45,26 @@ export class TodoComponent implements OnInit {
         console.log("My result data", result);
         let todos: Todo[] = JSON.parse(localStorage.getItem("todos") as string) || [];
         console.log(todos)
-         todos.map(x => {
+        todos.map(x => {
 
           if (x.content == toRm.content) {
 
-            if (result.value.content !='' && result.value.content!='test') {
+            if (result.value.content != '' && result.value.content != 'test') {
               x.content = result.value.content;
-              x.status = result.value.status;
-              console.log("result.content;", result.value.content);
-              console.log("result.status", result.value.status);
 
-              console.log("this is x", x);
-              // console.log("yes",toRm.content);
-              // console.log("yes",x.content);
+
             } else {
               console.log("the data is null");
               x.content = toRm.content;
-              console.log("this x in null",x)
+              console.log("this x in null", x)
+            }
+            if (result.value.status == '') {
+              console.log("status is null");
+              x.status = "ToDo"
+            } else {
+              console.log("status have a value");
+              x.status = result.value.status;
+
             }
 
           }
@@ -71,30 +74,26 @@ export class TodoComponent implements OnInit {
 
           if (x.content == toRm.content) {
 
-            if (result.value.content !='' && result.value.content!='test') {
+            if (result.value.content != '' && result.value.content != 'test') {
               x.content = result.value.content;
-              x.status = result.value.status;
-              console.log("this is x", x);
-              // console.log("yes",toRm.content);
-              // console.log("yes",x.content);
+
+
             } else {
               console.log("the data is null");
               x.content = toRm.content;
-              console.log("this x in null",x)
+            }
+            if (result.value.status == '') {
+              console.log("status is null");
+              x.status = "ToDo"
+            } else {
+              x.status = result.value.status;
+
             }
 
           }
 
         });
-        // let map2 = this.tod.map(x => {
 
-        //   if (x.content == toRm.content) {
-
-
-        //     x.content = result;
-
-        //   }
-        // });
         localStorage.setItem("todos", JSON.stringify(todos));
 
       }
@@ -106,14 +105,6 @@ export class TodoComponent implements OnInit {
     console.log("befor", todos);
     todos = todos?.filter((v: any, i: number) => v.content != toRm.content);
     this.tod = this.tod?.filter((v: any, i: number) => v.content != toRm.content);
-    console.log("after", todos);
-    console.log("this is todos after remove ", todos);
-    console.log("this is tod after remove elemnt ", this.tod);
-
-    // console.log("remove", toRm);
-    // console.log(todos);
-
-
     localStorage.setItem("todos", JSON.stringify(todos));
 
   }
@@ -121,8 +112,6 @@ export class TodoComponent implements OnInit {
 
   addTodo() {
     console.log(this.userid);
-    // const todos = JSON.parse(localStorage.getItem("todos") as string)|| [];
-    // console.log(this.todos);
     if (this.todoContent != '') {
       const str: String = this.todoContent + "";
       this.todos.push(
@@ -150,7 +139,6 @@ export class TodoComponent implements OnInit {
     }
 
     this.todoContent = "";
-    // console.log(this.todos);
   }
   logOut(): void {
     this.showtodo = false;
