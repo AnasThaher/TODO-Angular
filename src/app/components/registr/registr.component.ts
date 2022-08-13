@@ -21,12 +21,7 @@ export class RegistrComponent implements OnInit {
 
   creatUser(register: any) {
     const users = JSON.parse(localStorage.getItem("users") as string) || [];
-    console.log(users);
-    age: Number;
-    gender: String;
-    password: Number;
-    email: String;
-    userName: String;
+   
     const userName = register.value.name;
     const email = register.value.email;
     const password = register.value.password;

@@ -15,7 +15,5 @@ export class DialogBoxComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
-  close(){}
-  update(){}
+
 }

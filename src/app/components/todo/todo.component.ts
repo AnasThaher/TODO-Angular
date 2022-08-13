@@ -44,15 +44,20 @@ export class TodoComponent implements OnInit {
       result => {
         console.log("My result data", result);
         let todos: Todo[] = JSON.parse(localStorage.getItem("todos") as string) || [];
-        console.log(todos)
-        todos.map(x => {
+
+         todos.map(x => {
+            console.log("todos befor",todos);
 
           if (x.content == toRm.content) {
 
-            if (result.value.content != '' && result.value.content != 'test') {
+            if (result.value.content != '') {
               x.content = result.value.content;
+              console.log("result.content;", result.value.content);
+              console.log("result.status", result.value.status);
 
-
+              console.log("this is x", x);
+              console.log("yes",toRm.content);
+              console.log("yes",x.content);
             } else {
               console.log("the data is null");
               x.content = toRm.content;
@@ -62,7 +67,7 @@ export class TodoComponent implements OnInit {
               console.log("status is null");
               x.status = "ToDo"
             } else {
-              console.log("status have a value");
+              console.log("status has a value");
               x.status = result.value.status;
 
             }
@@ -70,6 +75,10 @@ export class TodoComponent implements OnInit {
           }
 
         });
+        localStorage.setItem("todos", JSON.stringify(todos));
+
+        console.log("todos aftrt",todos);
+
         let map2 = this.tod.map(x => {
 
           if (x.content == toRm.content) {
@@ -97,15 +106,18 @@ export class TodoComponent implements OnInit {
         localStorage.setItem("todos", JSON.stringify(todos));
 
       }
+
     );
 
   }
   remove(toRm: any) {
-    let todos = JSON.parse(localStorage.getItem("todos") as string) || [];
-    console.log("befor", todos);
-    todos = todos?.filter((v: any, i: number) => v.content != toRm.content);
+    // let todos = JSON.parse(localStorage.getItem("todos") as string) || [];
+    console.log("befor", this.todos);
+    this.todos = this.todos?.filter((v: any, i: number) => v.content != toRm.content);
     this.tod = this.tod?.filter((v: any, i: number) => v.content != toRm.content);
-    localStorage.setItem("todos", JSON.stringify(todos));
+    console.log("after", this.todos);
+
+    localStorage.setItem("todos", JSON.stringify(this.todos));
 
   }
 
